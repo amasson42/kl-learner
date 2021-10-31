@@ -19,6 +19,7 @@ pods
 `kubectl port-forward mon-pod 8080:8080` | open a port from a pod container
 deployments
 `kubectl get deployments` | list deployments
+`kubectl edit deployments/<dep-name>` | open editor to modify deployment yaml
 yaml-objects
 `kubectl create -f my-file.yaml` | create the ressources from the file
 `kubectl apply -f my-file.yaml` | update the resources from the file
@@ -32,3 +33,10 @@ labels
 `kubectl get <object> --selector="<label>"` | list object having given label defined with any value
 `kubectl get <object> --selector="<label1>=<value1>,<label2>=<value2>,..."` | list object filter with exact match label/value of multiple labels  (AND)
 `kubectl get <object> --selector="<label> in (<value1>,<value2>,<value3>)"` | filter label that has any of given value (OR)
+services
+`kubectl expose pods mon-pod` | expose a pod to put a service with an ip and a load balancer (can work with other objects)
+`kubectl get services` | list current services and their ip addresses
+
+
+
+When we expose something with a service, it has a load balancer with a static address. The value of the ip is sent to all other pods as environment variable with the name `{SERVICE_UPPERCASED}_SERVICE_HOST` and the port as `{SERVICE_UPPERCASED}_SERVICE_PORT`
