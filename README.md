@@ -11,7 +11,7 @@ pods
 `kubectl get pods` | list the pods (group of running containers)
 `kubectl get pods mon-pod -o jsonpath --template={.status.podIP}` | get only a specific pod status ip
 `kubectl logs mon-pod` | logs the pod
-`kubectl describe pods mon-pod` | who the state and setting of the pod 
+`kubectl describe pods mon-pod` | show the state and setting of the pod 
 `kubectl exec -it mon-pod` | exec something in a pod
 `kubectl cp mon-pod:/home/homework/safe-video.mp4 /home/dude/video.mp4` | copy file from pod (works both ways)
 `kubectl delete pods/mon-pod` | delete the pod
@@ -20,6 +20,9 @@ pods
 deployments
 `kubectl get deployments` | list deployments
 `kubectl edit deployments/<dep-name>` | open editor to modify deployment yaml
+replicaset
+`kubectl scale replicasets <rs> --replicas=<n>` | scale the number of replicaset pod
+`kubectl autoscale rs <rs> --min=<nmin> --max=<nmax> --cpu-percent=<[0-100]>` | auto scale with values
 yaml-objects
 `kubectl create -f my-file.yaml` | create the ressources from the file
 `kubectl apply -f my-file.yaml` | update the resources from the file
