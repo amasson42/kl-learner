@@ -43,3 +43,5 @@ services
 
 
 When we expose something with a service, it has a load balancer with a static address. The value of the ip is sent to all other pods as environment variable with the name `{SERVICE_UPPERCASED}_SERVICE_HOST` and the port as `{SERVICE_UPPERCASED}_SERVICE_PORT`
+
+DaemonSets are like replicaset but with exactly one pod running one each node
