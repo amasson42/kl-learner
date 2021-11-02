@@ -49,3 +49,26 @@ DaemonSets are like replicaset but with exactly one pod running one each node
 To start a job:
 `kubectl run [-i for interactive] <jobname> --image=gcr.io/kuar-demo/kuard-amd64:1 --restart=OnFailure -- [args...]`
 After execution, the job still exist as terminated pod and we should delete it
+
+Create a ConfigMap:
+`kubectl create configmap my-config --from-file=my-config.txt --from-literal=param=value`
+This creates a configmap with a file and an environment variable. We can stack as much as we want
+Environment variable from configmap are also small files
+
+Create a secret:
+`kubectl create secret generic kuard-tls --from-file=my-secret.txt`
+This creates a generic secret as a mountable directory
+
+`kubectl create secret docker-registry my-image-pull-secret --docker-username=<username> --docker-password=<password> --docker-email=<email>`
+In the `kuard-config.yaml` file, the parameter `imagePullSecrets` is the name of the docker-registry secret used to pull private docker images
+```
+  imagePullSecrets:
+    - name: my-image-pull-secret
+```
+
+`Param` | Definition
+--- | ---
+`--from-file=<file>` | use name of the file `file` as key and the content as value
+`--from-file=<key>=<file>` | use `key` as key and content of file `file` as value
+`--from-file=<directory>` | like `--from-file=<file>` but for each file in the directory `directory`
+`--from-literal=<key>=<value>` | too obvious to take time to explain
