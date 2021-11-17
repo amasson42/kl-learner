@@ -4,7 +4,7 @@ metadata:
   name: vapspy
 spec:
   containers:
-  - image: docker.io/amasson42/vapor-spy:latest
+  - image: docker.io/amasson42/vapor-spy:1.0.1
     name: vapspy
     ports:
     - containerPort: 8080

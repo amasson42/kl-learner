@@ -1,0 +1,10 @@
+# We can use an external service to define something managed outside
+# of our cluster by simply defining its dns name and an internal name
+# will be allocated for this component
+apiVersion: v1
+kind: Service
+metadata:
+  name: external-database
+spec:
+  type: ExternalName
+  externalName: database.company.com

@@ -1,0 +1,10 @@
+# Endpoints are another way of balancing external services.
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: external-ip-database
+subsets:
+  - addresses:
+    - ip: 192.168.0.1
+    ports:
+    - port: 330
