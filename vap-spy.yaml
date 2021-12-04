@@ -4,9 +4,20 @@ metadata:
   name: vapspy
 spec:
   containers:
-  - image: docker.io/amasson42/vapor-spy:1.0.1
-    name: vapspy
-    ports:
-    - containerPort: 8080
-      name: http
-      protocol: TCP
+    - name: vapspy
+      image: docker.io/amasson42/vapor-spy:1.0.1
+      ports:
+      - containerPort: 8080
+        name: http
+        protocol: TCP
+      volumeMounts:
+      - name: config
+        mountPath: /app/.env
+        subPath: .env
+      - name: config
+        mountPath: /app/hello.sh
+        subPath: hello.sh
+  volumes:
+    - name: config
+      configMap:
+        name: "vap-spy-configmap"

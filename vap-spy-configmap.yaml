@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vap-spy-configmap
+data:
+  .env: |
+    HEY=coucou
+    SUPER=cool
+  hello.sh: |
+    echo "Hello guys ! I'm" `whoami`
