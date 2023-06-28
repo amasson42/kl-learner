@@ -17,7 +17,12 @@ spec:
       - name: config
         mountPath: /app/hello.sh
         subPath: hello.sh
+      - name: database
+        mountPath: /var/lib/mysql
   volumes:
     - name: config
       configMap:
         name: "vap-spy-configmap"
+    - name: database
+      persistentVolumeClaim:
+        claimName: database
